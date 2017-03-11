@@ -1,6 +1,8 @@
 TEMPLATE = app
 
 QT += qml quick
+QTPLUGIN += qtaudio_coreaudio
+
 CONFIG += c++11
 
 SOURCES += main.cpp

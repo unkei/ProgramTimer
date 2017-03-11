@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
+import QtMultimedia 5.0
 
 Window {
     visible: true
@@ -13,7 +14,7 @@ Window {
         id: mainForm
         anchors.fill: parent
         mouseArea.onClicked: {
-            console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
+            console.log(qsTr('Clicked on background.'))
         }
         startButtonMouseArea.onClicked: {
             if (state == "started") {
@@ -24,8 +25,19 @@ Window {
                 startTime = new Date().getTime()
                 setCounter()
                 counterTimer.start()
+                begin.play()
             }
         }
+    }
+
+    SoundEffect {
+        id: begin
+        source: "begin.wav"
+    }
+
+    SoundEffect {
+        id: end
+        source: "end.wav"
     }
 
     function pad(n) {
@@ -45,15 +57,17 @@ Window {
         var counter_ms = new Date().getTime() - startTime
         var counter_s = Math.floor(counter_ms / 1000)
 //        console.log(counter_s + " sec")
-        var c1 = 30 // first alert 30 sec after start/c2
+        var c1 = 40 // first alert 40 sec after start/c2
         var c2 = 20 // second alert 20 sec after c1
         var cycle = c1 + c2
         var counter_s_1 = counter_s - c1
         var counter_s_2 = counter_s - (c1 + c2)
         if (counter_s_1 % cycle == 0) {
             console.log("30 sec passed!")
+            end.play()
         } else if(counter_s_2 % cycle == 0) {
             console.log("50 sec passed!")
+            begin.play()
         }
     }
 
