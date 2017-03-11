@@ -5,7 +5,8 @@ QTPLUGIN += qtaudio_coreaudio
 
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    iosidletimer.mm
 
 RESOURCES += qml.qrc
 
@@ -16,3 +17,13 @@ QML_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+ios {
+HEADERS += \
+    iosidletimer.h
+
+OBJECTIVE_SOURCES += \
+    iosidletimer.mm \
+
+LIBS += -framework UIKit
+}
