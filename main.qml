@@ -63,10 +63,10 @@ Window {
         var counter_s_1 = counter_s - c1
         var counter_s_2 = counter_s - (c1 + c2)
         if (counter_s_1 % cycle == 0) {
-            console.log("30 sec passed!")
+            console.log(c1 + " sec passed!")
             end.play()
         } else if(counter_s_2 % cycle == 0) {
-            console.log("50 sec passed!")
+            console.log((c1 + c2) + " sec passed!")
             begin.play()
         }
     }
